@@ -15,10 +15,6 @@
 
 
 export function converterTemperatura(temperatura, inputScale)  {
-    if (isNaN(temperatura)) {
-        throw new Error('Por favor, insira um valor numérico válido para a temperatura.');
-        return;
-    }
 
     let celsius = temperatura
       if (inputScale === 'celsius') {
