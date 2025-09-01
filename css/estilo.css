@@ -52,12 +52,26 @@ button {
     font-family: "Parkinsans", sans-serif;
 }
 
+
+
 .calcular {
-    background-color: aquamarine;
-    color: darkolivegreen;
+    background-color: #7fffd4;
+    color: #546b2c;
+}
+
+.calcular:hover {
+    background-color: #4ec09a;
+    color: white;
+    cursor: pointer;
 }
 
 .limpar {
     background-color: lightsalmon;
     color: darkred;
+}
+
+.limpar:hover {
+    background-color: rgb(218, 80, 80);
+    color: rgb(255, 183, 183);
+    cursor: pointer;
 }

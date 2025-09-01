@@ -12,3 +12,28 @@
  * const resultado = calcularTemperatura(36,0)
  * console.log(resultado)
  */
+
+
+export function converterTemperatura(temperatura, inputScale)  {
+    if (isNaN(temperatura)) {
+        throw new Error('Por favor, insira um valor numérico válido para a temperatura.');
+        return;
+    }
+
+    let celsius = temperatura
+      if (inputScale === 'celsius') {
+        celsius = temperatura; // Já está em Celsius
+      } else if (inputScale === 'fahrenheit') {
+        celsius = (temperatura - 32) * 5 / 9; // Fahrenheit para Celsius
+    } else if (inputScale === 'kelvin') {
+        celsius = temperatura - 273.15; // Kelvin para Celsius
+    }
+
+    const resultados = {
+    celsius: celsius,
+    fahrenheit: (celsius * 9 / 5) + 32,
+    kelvin: celsius + 273.15
+  };
+
+  return resultados;
+}
