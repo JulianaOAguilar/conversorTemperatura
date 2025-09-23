@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Parkinsans:wght@300..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
     <title>Conversor de Temperatura</title>
 </head>
@@ -16,19 +18,37 @@
         <img src="img/img.png" alt="Conversor de Temperatura" title="imm conversor de temperatura" class="img">
         <h1>Conversor de Temperatura</h1>
         <form id="formConversor">
-            <label for="conversor">Escolha a escala:</label>
-            <select id='temperaturaInput' name="temperatura">
-                <option value="celsius">Celsius</option>
-                <option value="kelvin">Kelvin</option>
-                <option value="fahrenheit">Fahrenheit</option>
-            </select>
+            
             <label for="valor">Insira a temperatura:</label>
-                <input type="number" id="valor1" step="0.1" required/>
+            <input type="number" id="valor1" step="0.1" required />
+
+<fieldset>
+    <legend>Escolha a escala:</legend>
+
+    <div class="radio-option">
+        <input type="radio" id="celsius" name="escala" value="celsius" />
+        <label for="celsius">Celsius</label>
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" id="kelvin" name="escala" value="kelvin" />
+        <label for="kelvin">Kelvin</label>
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" id="fahrenheit" name="escala" value="fahrenheit" />
+        <label for="fahrenheit">Fahrenheit</label>
+    </div>
+</fieldset>
+
+
             <button type="submit" class="calcular" id="calcular">Calcular</button>
-            <button type="reset" class="limpar">Limpar</button>
+            <button type="reset" class="limpar" id="limpar">Limpar histórico</button>
         </form>
         <h2>Resultado</h2>
         <p id="resultado"></p>
+
+        <!-- adicionar tabela de histórico, ou colocar ele no resultado, você quem sabe uwu-->
     </div>
     <script src="js/main.js" type="module"></script>
 </body>

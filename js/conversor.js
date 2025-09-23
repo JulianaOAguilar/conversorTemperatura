@@ -14,22 +14,31 @@
  */
 
 
-export function converterTemperatura(temperatura, inputScale)  {
 
-    let celsius = temperatura
-      if (inputScale === 'celsius') {
-        celsius = temperatura; // Já está em Celsius
-      } else if (inputScale === 'fahrenheit') {
-        celsius = (temperatura - 32) * 5 / 9; // Fahrenheit para Celsius
-    } else if (inputScale === 'kelvin') {
-        celsius = temperatura - 273.15; // Kelvin para Celsius
-    }
+export function ConverterTemperatura(temperatura, escalaSelecionada) {
+  if (isNaN(temperatura)) {
+    throw new Error('Por favor, insira um valor numérico válido para a temperatura.');
+  }
 
-    const resultados = {
+  const escala = escalaSelecionada.value.toLowerCase();
+
+  let celsius = temperatura
+  if (escala === 'celsius') {
+    celsius = temperatura;
+  } else if (escala === 'fahrenheit') {
+    celsius = (temperatura - 32) * 5 / 9;
+  } else if (escala === 'kelvin') {
+    celsius = temperatura - 273.15;
+  }
+
+
+  const resultados = {
     celsius: celsius,
     fahrenheit: (celsius * 9 / 5) + 32,
     kelvin: celsius + 273.15
   };
+
+  
 
   return resultados;
 }

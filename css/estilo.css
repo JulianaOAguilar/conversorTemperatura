@@ -75,3 +75,10 @@ button {
     color: rgb(255, 183, 183);
     cursor: pointer;
 }
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px; /* espaço entre linhas */
+}
