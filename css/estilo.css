@@ -3,11 +3,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    max-width: 100%;
 }
 
 .img {
-    width: 500px;
-
+    width: 450px;
+    
 }
 
 .container {
@@ -15,6 +16,7 @@ body {
     border-radius: 32px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
     background-color: #F7CD7F;
+    
 }
 
 form {
@@ -23,7 +25,7 @@ form {
     gap: 16px;
 }
 
-h1, h2, label {
+h1, h2, label,legend {
     font-family: "Parkinsans", sans-serif;
     font-weight: bold;
     color: #DB573A;
@@ -52,7 +54,30 @@ button {
     font-family: "Parkinsans", sans-serif;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-family: "Parkinsans", sans-serif;
+    background-color: #F7CD7F;
+    color:darkcyan;
+    border: 3px solid #DB573A;
+    
+    
+}
 
+tbody, thead, td, th, tr {
+    text-align: center;
+    border: 1px solid #DB573A;
+  
+}
+
+fieldset {
+    border: 2px solid #DB573A;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
 
 .calcular {
     background-color: #7fffd4;

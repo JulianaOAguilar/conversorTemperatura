@@ -6,7 +6,7 @@
  * @param {number} celsius - graus celsius
  * @param {number} kelvin - graus kelvin
  * @param {number} fahrenheit - graus fahrenheit
- * @returns {number} o valor do convertido calculado
+ * @returns {number} o valor convertido calculado
  * 
  * @example //converte 36ºC em Fahrenheit
  * const resultado = calcularTemperatura(36,0)
