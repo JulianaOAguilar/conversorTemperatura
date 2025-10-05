@@ -2,10 +2,11 @@ import { ConverterTemperatura } from './conversor.js';
 
 let temperaturas = JSON.parse(localStorage.getItem('temperaturas')) || [];
 
+
 document.addEventListener('DOMContentLoaded', function () {
-    carregarTemperaturas()
-    // Carrega os temperaturas do Local Storage
-    //listar temperaturas 
+    carregarTemperaturas()     // Carrega os temperaturas do Local Storage
+    listarConversoesAnteriores() // carrega a tabela com os valores existentes no Local Storage
+
 })
 
 function carregarTemperaturas() {
@@ -13,12 +14,13 @@ function carregarTemperaturas() {
     }
 
     function salvarTemperaturas() {
-    const jsonProduct = JSON.stringify(temperaturas)
-    localStorage.setItem('temperaturas', jsonProduct)
+    const jsonTemp = JSON.stringify(temperaturas)
+    localStorage.setItem('temperaturas', jsonTemp)
 }
 
 document.getElementById('limpar').addEventListener('click', (event) => {
     event.preventDefault();
+    corpo.innerHTML = ''
     limpar();
 })
 
@@ -39,6 +41,7 @@ function limpar() {
 
 
 function calcular() {
+    console.log(temperaturas)
     let temperatura = parseFloat(document.getElementById('valor1').value);
     let escalaSelecionada = document.querySelector('input[name="escala"]:checked');
     const resultadoElemento = document.getElementById('resultado');
@@ -53,6 +56,7 @@ function calcular() {
 
             temperaturas.push(resultados)
             salvarTemperaturas()
+            listarConversoesAnteriores()
             console.log(temperaturas)
 
     } catch (error) {
@@ -60,4 +64,27 @@ function calcular() {
         return;
     }
 }
+
+function listarConversoesAnteriores() {
+    const corpo = document.getElementById('anteriores');
+
+    corpo.innerHTML = ''; // limpa o conteúdo anterior
+    let linhas = '';
+
+    temperaturas.forEach((tempObj) => {
+        // Constrói uma linha com os valores do objeto
+        let linha = '';
+        
+        for (const escala in tempObj) {
+            linha += `<td>${escala.toUpperCase()}: ${tempObj[escala].toFixed(2)} </td>`;
+        }
+
+        linha += `</tr>`;
+        linhas += linha;
+        linhas += `<tr><td colspan="3"><br></td></tr>`;
+    });
+
+    corpo.innerHTML = linhas; // insere as linhas construídas na tabela
+}
+
 
