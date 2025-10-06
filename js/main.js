@@ -6,22 +6,25 @@ let temperaturas = JSON.parse(localStorage.getItem('temperaturas')) || [];
 document.addEventListener('DOMContentLoaded', function () {
     carregarTemperaturas()     // Carrega os temperaturas do Local Storage
     listarConversoesAnteriores() // carrega a tabela com os valores existentes no Local Storage
-
 })
 
 function carregarTemperaturas() {
-        temperaturas = JSON.parse(localStorage.getItem('temperaturas')) || [];
-    }
+    temperaturas = JSON.parse(localStorage.getItem('temperaturas')) || [];
+}
 
-    function salvarTemperaturas() {
+function salvarTemperaturas() {
     const jsonTemp = JSON.stringify(temperaturas)
     localStorage.setItem('temperaturas', jsonTemp)
 }
 
-document.getElementById('limpar').addEventListener('click', (event) => {
-    event.preventDefault();
-    corpo.innerHTML = ''
+
+// limpar o histórico e o resultado
+document.getElementById('limpar').addEventListener('click', function () {
     limpar();
+    const resultadoElemento = document.getElementById('resultado');
+    const anterioresElemento = document.getElementById('anteriores');
+    resultadoElemento.innerHTML = '';
+    anterioresElemento.innerHTML = '';
 })
 
 document.getElementById('calcular').addEventListener('click', (event) => {
@@ -41,7 +44,6 @@ function limpar() {
 
 
 function calcular() {
-    console.log(temperaturas)
     let temperatura = parseFloat(document.getElementById('valor1').value);
     let escalaSelecionada = document.querySelector('input[name="escala"]:checked');
     const resultadoElemento = document.getElementById('resultado');
@@ -49,42 +51,42 @@ function calcular() {
     try {
         const resultados = ConverterTemperatura(temperatura, escalaSelecionada);
         const escalas = Object.keys(resultados);
-        resultadoElemento.innerHTML = escalas
-            .filter(escala => escala !== escalaSelecionada.value.toLowerCase())
-            .map(escala => `<p>${escala.toUpperCase()}: ${resultados[escala].toFixed(2)}</p>`)
-            .join('');
 
-            temperaturas.push(resultados)
-            salvarTemperaturas()
-            listarConversoesAnteriores()
-            console.log(temperaturas)
+        // adiciona ao histórico
+        temperaturas.push(resultados);
+        salvarTemperaturas();
+        listarConversoesAnteriores();
+
+          
+        // monta texto em uma linha só, ignorando a escala de origem
+        let textoLinha = escalas
+            .filter(escala => escala !== escalaSelecionada.value.toLowerCase())
+            .map(escala => `${escala.toUpperCase()}: ${resultados[escala].toFixed(2)}`)
+            .join(' '); // tudo em uma linha
+
+        // exibe no resultado com numeração
+        resultadoElemento.innerHTML = `<p>${textoLinha}</p>`;
 
     } catch (error) {
         resultadoElemento.innerHTML = `<p> ❌ ERRO! ${error.message}</p>`;
-        return;
     }
 }
 
+
 function listarConversoesAnteriores() {
     const corpo = document.getElementById('anteriores');
+    corpo.innerHTML = '';
 
-    corpo.innerHTML = ''; // limpa o conteúdo anterior
-    let linhas = '';
+    // inverter a ordem e pega os 5 ultimos
+    const ultimasTemperaturas = temperaturas.slice(-5).reverse();
 
-    temperaturas.forEach((tempObj) => {
-        // Constrói uma linha com os valores do objeto
-        let linha = '';
-        
+    ultimasTemperaturas.forEach((tempObj, index) => {
+        let texto = '';
+
         for (const escala in tempObj) {
-            linha += `<td>${escala.toUpperCase()}: ${tempObj[escala].toFixed(2)} </td>`;
+            texto += `${escala.toUpperCase()}: ${tempObj[escala].toFixed(2)} `;
         }
 
-        linha += `</tr>`;
-        linhas += linha;
-        linhas += `<tr><td colspan="3"><br></td></tr>`;
+        corpo.innerHTML += `${texto}</p>`;
     });
-
-    corpo.innerHTML = linhas; // insere as linhas construídas na tabela
 }
-
-

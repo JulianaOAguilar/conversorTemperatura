@@ -3,11 +3,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-width: 100%;
+    width: 550px;
+    margin: 0 auto;
 }
 
 .img {
-    width: 450px;
+    width: 100%
     
 }
 
@@ -32,6 +33,8 @@ h1, h2, label,legend {
     display: flex;
     justify-content: center;
 }
+
+
 
 label {
     font-size: x-large;
